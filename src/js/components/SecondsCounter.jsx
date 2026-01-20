@@ -1,24 +1,25 @@
 import React from "react";
 
-const SecondsCounter = (props) => {
+const SecondsCounter = ({ seconds }) => {
+  const digits = String(seconds).padStart(6, "0").split("");
+
   return (
-    <div
-      style={{
-        backgroundColor: "black",
-        color: "white",
-        fontSize: "40px",
-        fontFamily:'"Times New Roman", serif',
-        padding: "20px",
-        textAlign: "center"
+    <div className="counter-wrap">
+      <div className="counter-bar">
+        <div className="digit-box icon-box">
+          <i className="fa-solid fa-clock" />
+        </div>
 
-        
-      }}
-    >
-<i  className="fa-solid fa-clock"></i>      <p>{props.seconds}</p>
+        {digits.map((d, i) => (
+          <div className="digit-box" key={i}>
+            {d}
+          </div>
+        ))}
+      </div>
 
-<button style={{ borderRadius: '10px'}} onClick={() => window.location.reload()}>
-          Reiniciar
-        </button>
+      <button className="reset-btn" onClick={() => window.location.reload()}>
+        Reiniciar
+      </button>
     </div>
   );
 };
